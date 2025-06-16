@@ -39,30 +39,6 @@ def memory_game(deck_dict):
     # Because we pop out elements of the list when filling the grid, we need to copy for later reference.
     f_b_pairs1 = copy.deepcopy(f_b_pairs)
 
-    def grid_maker(h, w):
-        grid1 = [["0" for i in range(w)] for i in range(h)]
-        return grid1
-
-    def print_grid(grid2):
-        y = 0
-        print("\n      columns\n      ", end="")
-        for i in range(columns_count):
-            # 'a' is ord(97), chr(97) is 'a'
-            print(chr(97 + y), end="  ")
-            y += 1
-        print()
-        x = 1
-        for row1 in grid2:
-            print("row " + str(x), end=" ")
-            x += 1
-            for e in row1:
-                # Print a blank if the card is empty, otherwise print a square
-                if e == "0":
-                    print("   ", end="")
-                else:
-                    print("口 ", end="")
-            print()
-
     grid = grid_maker(rows_count, columns_count)
     # Fill grid, make sure the target location is empty ("0"), pop the itm and fill till each item in the list is empty
     for itm4 in f_b_pairs:
@@ -80,7 +56,7 @@ def memory_game(deck_dict):
     game_over = False
     while not game_over:
         game_round += 1
-        print_grid(grid)
+        print_grid(grid, columns_count)
         # Pick first card
         valid_choice = False
         while not valid_choice:
@@ -122,3 +98,28 @@ def memory_game(deck_dict):
                     game_over = False
         if game_over:
             print(f"Congratulations, you won! It took you {str(game_round)} rounds.")
+
+def grid_maker(h, w):
+	grid1 = [["0" for i in range(w)] for i in range(h)]
+	return grid1
+
+
+def print_grid(grid2, columns_count):
+	y = 0
+	print("\n      columns\n      ", end="")
+	for i in range(columns_count):
+		# 'a' is ord(97), chr(97) is 'a'
+		print(chr(97 + y), end="  ")
+		y += 1
+	print()
+	x = 1
+	for row1 in grid2:
+		print("row " + str(x), end=" ")
+		x += 1
+		for e in row1:
+			# Print a blank if the card is empty, otherwise print a square
+			if e == "0":
+				print("   ", end="")
+			else:
+				print("口 ", end="")
+		print()
