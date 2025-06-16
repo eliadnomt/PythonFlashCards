@@ -58,7 +58,7 @@ write a new file to same directory, using the same filename but changing the ext
     # Then separate by fbsep, culling trailing punctuation on the way
     data4 = []
     for itm2 in data3:
-        if itm2 is not "" and itm2 is not "\n" and itm2 is not "":
+        if itm2 != "" and itm2 != "\n" and itm2 != "":
             data4.append(itm2.split(fbsep))
     # Then clean out wrong sized items, making sure our list of paired strings lists are all len(2) pairs
     data5 = []
