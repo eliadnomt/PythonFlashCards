@@ -1,63 +1,61 @@
-# PythonFlashCards
-Building a flashcard game in python in different configurations
-An exploration in python development by Jacob Cohen-Rosenthal
+# Flashcards Application - Refactored Version
 
-My goal is to eventually develop useful educational technology software.
-I'm starting with a simple flashcard game and my goal is to incrementally add layers of complexity to it.
-I realize that others have done much of this before, including may python hobbyists, and of course anki, and outside of python, quizlet and chegg etc.
-For the purpose of learning, and perhaps accidental discovery, I'm trying to think of all the implementations on my own instead of using
-or even reading code that others have already built. After I've built a working model I will then examine other people’s solutions and see what I can learn from them.
-I hope to take the idea from a simple text based version, to a UI version (learning pyqt along the way, maybe also trying pygame) to a webapp version(learning flask, html, and perhaps some javascript along the way), then perhaps also taking it to iOS (with pythonista?) and to Android (kivy?)
+## Overview
+This is a flashcard application that requires no external libraries and uses data stored in local dictionaries.
 
-Desired functionality (in rough chronological order):
-》》》Display card deck
-》》》Add and delete items
-》》》Quizzes
-》》》Enter answer
-》》》Multiple choice
-》》》Self report
-》》》Matching
-》》》true/false
-》》》Multitype combined quizzes
-》》》Cusotomizable quizzes - can replace unwanted questions without having to regenerate whole quiz. -can add in fill in the blank questions on the fly, or custom choose/write multiple choice.
-》》》Importing quizlet, anki, chegg etc. decks. Exporting to those as well
-》》》Notes on card backs, web links
-》》》Pictures 
-》》》Combining decks
-》》》Sharing decks
-》》》Live updating of deck contents across platforms
-》》》A tool that can turn a website link, like a duolingo or quizlet page into a PythonFlashCards formatted card deck
-》》》Live accessibility of decks through an API
-》》》When creating cards auto suggest based on other users cards
-》》》Record session results
-》》》Spaced repetition (SRS)
-》》》Audio output
-》》》Collaborative deck creation with personalized notes
-》》》Etymology features
-》》》Speech recognition
-》》》Handwriting recognition for cards written on an touchscreen/ipad
-》》》Doodle notes
-》》》Handwriting recognition to convert hand written notes into e-cards
-》》》SRS forgetting curves generated based on peer data (age peer, experience peer).
-》》》Scan a book and make appropriate cards from the likely important or new words (or concepts-much more difficult)
-》》》Computer/phone plugin to easily add items encountered in daily life into a deck. Right click on any word in your computer in various programs, and like the current ‘define’ option, create an option to ‘create card’. 
+## File Structure
 
+### Main Entry Point
+- `main.py` - Main application file that runs the program
 
+### Core Modules
+- `import_utils.py` - Functions for importing and converting flashcard files (Quizlet format)
+- `deck_utils.py` - Utilities for managing flashcard decks
+- `display_utils.py` - Functions for formatting and displaying flashcards with box graphics
+- `constants.py` - Application constants and menu strings
 
-After using flashcard apps in my classroom as a teacher, and after reading reviews, I’ve come up with some improvements and ideas to existing popular flashcard/quiz apps that I’d like to try out. If you have any suggestions, please help me add to this list:
-》》》Better integration/ interoperability between flashcards and learning games. If you play a flashcard game, your results and score should be added into your performance history, updating your SRS data.
-》》》More convenient and user friendly onboarding (Anki’s problem) while still allowing for more features and customization (Quizlet’s problem) 
-》》》Easier way to have a group collaborate to quickly flashcard-erize / knowledgepoint-erize a large textbook or set of information.
-》》》Way to combine the cognitive reinforcement of handwriting cards with the power of SRS and other digital flashcard functionality
+### Quiz Modules
+- `quiz_multiple_choice.py` - Multiple choice quiz functionality
+- `quiz_write_answer.py` - Write-in answer quiz functionality
+- `quiz_self_report.py` - Self-report quiz functionality
 
+### Game Module
+- `memory_game.py` - Memory matching game functionality
 
+### Package Files
+- `__init__.py` - Package initialization file
+- `requirements.txt` - Python dependencies (currently none, uses standard library only)
 
+## How to Run
+```bash
+python main.py
+```
 
+## Features
+- Import Quizlet flashcard exports
+- Create, view, and manage flashcard decks
+- Three quiz types: Multiple choice, Write answer, Self-report
+- Memory matching game
+- Deck switching and persistence
 
-First, in version 0.1, I've made a simple text based game within python that uses a dictionary built in-program. 
+## Improvements
+- **Modular Structure**: Each function is now in its own logical module
+- **Better Organization**: Related functions are grouped together
+- **Easier Maintenance**: Changes to one feature don't affect others
+- **Import Flexibility**: Individual modules can be imported and reused
+- **Clear Separation of Concerns**: Display, quiz logic, games, and utilities are separated
 
-In later versinos of this project I was inspired to create a universal flashcard format, with decentralized cloud storage. 
-This project has been moved to https://github.com/Jewcub/Inter-Planetary-Flash-Cards
+## Usage Example
+To use individual modules in other projects:
+```python
+from display_utils import card_displayer
+from quiz_multiple_choice import multiple_choice_quiz
 
+# Use the functions independently
+display = card_displayer("Sample Card")
+print(display)
+```
 
-
+## Notes
+- The program expects JSON files for flashcard decks in the same directory
+- Text files can be imported and converted to JSON format
