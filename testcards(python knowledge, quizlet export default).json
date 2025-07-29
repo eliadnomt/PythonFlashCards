@@ -427,7 +427,7 @@
     "strings": "list of characters",
     "sudo": "DANGER! become super use root! DANGER!",
     "syntax": "The structure of a program",
-    "syntax error": "An error in a program that makes it impossible to parse \u2014 and therefore impossible to interpret.",
+    "syntax error": "An error in a program that makes it impossible to parse — and therefore impossible to interpret.",
     "sys": "module - contains important objects and functions",
     "token": "basic elements of a language(letters, numbers, symbols)",
     "trace": "To follow the flow of execution of a program by hand, recording the change of state of the variables and any output produced.",

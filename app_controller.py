@@ -16,7 +16,7 @@ from quiz_multiple_choice import multiple_choice_quiz
 from quiz_write_answer import write_answer_quiz
 from quiz_self_report import self_report_quiz
 from memory_game import memory_game
-from constants import WELCOME, MENU, TEST_TYPE_PROMPT, FRONT_TO_BACK_PROMPT
+from constants import MENU_DECK, MENU_MAIN, MENU_GAME, TEST_TYPE_PROMPT, FRONT_TO_BACK_PROMPT
 
 
 def get_program_directory() -> str:
@@ -305,7 +305,7 @@ def handle_import_functionality(program_directory: str) -> bool:
 		return False
 
 
-def run_deck_menu(deck: Dict[str, str], deck_file_path: str) -> bool:
+def run_main_menu(deck: Dict[str, str], deck_file_path: str) -> bool:
 	"""
 	Run the main deck menu loop.
 
@@ -316,11 +316,49 @@ def run_deck_menu(deck: Dict[str, str], deck_file_path: str) -> bool:
 	Returns:
 		True to continue with main loop, False to exit application
 	"""
+
+	while True:
+		try:
+			menu_choice = input(MENU_MAIN).strip()
+
+			if menu_choice == "1":
+				run_deck_menu(deck, deck_file_path)
+				return False
+			elif menu_choice == "2":
+				run_game_menu(deck, deck_file_path)
+				return False
+			elif menu_choice == "3":
+				# Exit application
+				print("Thanks for playing, see you next time!")
+				save_deck(deck, deck_file_path)
+				return False
+			else:
+				print("Error: Invalid menu choice. Please enter a number between 1 and 3.")
+
+		except KeyboardInterrupt:
+			print("\n\nExiting application...")
+			save_deck(deck, deck_file_path)
+			return False
+		except Exception as e:
+			print(f"An unexpected error occurred: {e}")
+
+
+def run_deck_menu(deck: Dict[str, str], deck_file_path: str) -> bool:
+	"""
+	Run the deck management menu loop.
+
+	Args:
+		deck: The current deck dictionary
+		deck_file_path: Path to the deck file
+
+	Returns:
+		True to continue with main loop, False to return to main menu
+	"""
 	program_directory = get_program_directory()
 
 	while True:
 		try:
-			menu_choice = input(MENU).strip()
+			menu_choice = input(MENU_DECK).strip()
 
 			if menu_choice == "1":
 				handle_display_deck(deck)
@@ -329,25 +367,53 @@ def run_deck_menu(deck: Dict[str, str], deck_file_path: str) -> bool:
 			elif menu_choice == "3":
 				handle_remove_card(deck)
 			elif menu_choice == "4":
-				handle_quiz_selection(deck)
-			elif menu_choice == "5":
-				handle_memory_game(deck)
-			elif menu_choice == "6":
 				# Save and return to deck selection
 				if save_deck(deck, deck_file_path):
 					print("Deck saved successfully!")
 				return True
-			elif menu_choice == "7":
+			elif menu_choice == "5":
 				# Import functionality
 				if handle_import_functionality(program_directory):
 					return True  # Return to deck selection after successful import
-			elif menu_choice == "8":
-				# Exit application
-				print("Thanks for playing, see you next time!")
-				save_deck(deck, deck_file_path)
+			elif menu_choice == "6":
+				run_main_menu(deck, deck_file_path)
 				return False
 			else:
-				print("Error: Invalid menu choice. Please enter a number between 1 and 8.")
+				print("Error: Invalid menu choice. Please enter a number between 1 and 6.")
+
+		except KeyboardInterrupt:
+			print("\n\nExiting application...")
+			save_deck(deck, deck_file_path)
+			return False
+		except Exception as e:
+			print(f"An unexpected error occurred: {e}")
+
+
+def run_game_menu(deck: Dict[str, str], deck_file_path: str) -> bool:
+	"""
+	Run the game menu loop.
+
+	Args:
+		deck: The current deck dictionary
+		deck_file_path: Path to the deck file
+
+	Returns:
+		True to continue with main loop, False to exit application
+	"""
+
+	while True:
+		try:
+			menu_choice = input(MENU_GAME).strip()
+
+			if menu_choice == "1":
+				handle_quiz_selection(deck)
+			elif menu_choice == "2":
+				handle_memory_game(deck)
+			elif menu_choice == "3":
+				run_main_menu(deck, deck_file_path)
+				return False
+			else:
+				print("Error: Invalid menu choice. Please enter a number between 1 and 3.")
 
 		except KeyboardInterrupt:
 			print("\n\nExiting application...")

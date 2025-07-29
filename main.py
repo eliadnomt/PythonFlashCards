@@ -20,7 +20,7 @@ import glob
 import os
 
 from app_controller import get_program_directory, handle_import_functionality, get_valid_deck_choice, load_deck, \
-	run_deck_menu
+	run_main_menu
 from deck_utils import deck_menu_constructor
 from constants import WELCOME
 
@@ -56,7 +56,7 @@ def main() -> None:
 					continue
 
 				# Run the deck menu
-				if not run_deck_menu(deck, deck_file_path):
+				if not run_main_menu(deck, deck_file_path):
 					break  # Exit application
 
 		except KeyboardInterrupt:

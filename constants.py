@@ -9,16 +9,31 @@ WELCOME = """
 """
 
 
-MENU = """\nmenu:
+MENU_MAIN = """\nmenu:
+
+1. Deck management
+2. Game play
+3. Quit
+
+Your choice: """
+
+
+MENU_DECK = """\nmenu:
 
 1. View deck
 2. Add item
 3. Delete item
-4. Quiz yourself
-5. Play a game
-6. Switch decks
-7. Import and convert decks
-8. Quit
+4. Switch decks
+5. Import and convert decks
+6. Return to main menu
+
+Your choice: """
+
+MENU_GAME = """\nmenu:
+
+1. Quiz yourself
+2. Play a game
+3. Return to main menu
 
 Your choice: """
 
