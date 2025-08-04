@@ -4,7 +4,7 @@ Memory game functionality
 from random import randrange
 import math
 import copy
-from display_utils import card_displayer
+from .display_utils import card_displayer
 
 # memory_game.py
 """
@@ -13,7 +13,7 @@ Memory game functionality
 from random import randrange
 import math
 import copy
-from display_utils import card_displayer
+from .display_utils import card_displayer
 
 
 class MemoryGame:
