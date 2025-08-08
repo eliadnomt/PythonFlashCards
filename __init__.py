@@ -8,7 +8,7 @@ __author__ = "Your Name"
 # Import main components if needed
 from .import_utils import import_quizlet_lineskip_fix
 from .deck_utils import deck_menu_constructor
-from .display_utils import card_displayer, display_deck
+from display_utils import card_displayer, display_deck
 from .quiz_multiple_choice import multiple_choice_quiz
 from .quiz_write_answer import write_answer_quiz
 from .quiz_self_report import self_report_quiz

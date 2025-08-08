@@ -2,7 +2,7 @@
 Write answer quiz functionality
 """
 from random import randrange
-from .display_utils import card_displayer
+from display_utils import card_displayer
 
 
 def write_answer_quiz(deck_dict, quiz_direction):

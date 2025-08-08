@@ -2,7 +2,7 @@
 Self report quiz functionality
 """
 from random import randrange
-from .display_utils import card_displayer
+from display_utils import card_displayer
 
 
 def self_report_quiz(deck_dict, quiz_direction):
